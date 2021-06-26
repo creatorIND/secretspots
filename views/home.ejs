@@ -34,7 +34,7 @@
 							>Home</a
 						>
 						<a href="/campgrounds" class="nav-link">Campgrounds</a>
-						<% if(currentUser === undefined) { %>
+						<% if(!currentUser) { %>
 						<a href="/login" class="nav-link">Login</a>
 						<a href="/register" class="nav-link">Register</a>
 						<% } else { %>
