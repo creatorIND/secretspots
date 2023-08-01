@@ -6,6 +6,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const ejsMate = require("ejs-mate");
+const ejs = require("ejs");
 const session = require("express-session");
 const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError");
@@ -37,7 +38,7 @@ db.once("open", () => {
 const app = express();
 
 app.engine("ejs", ejsMate);
-app.set("view engine", "ejs");
+app.set("view engine", ejs.name);
 app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true }));
