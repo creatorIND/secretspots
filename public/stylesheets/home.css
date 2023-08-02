@@ -15,7 +15,8 @@ body {
 .nav-link {
 	padding: 0.25rem 0;
 	font-size: large;
-	font-family: "Josefin Sans";
+	font-family: "Josefin Sans", sans-serif;
+	font-weight: 400;
 	color: rgba(255, 255, 255, 0.5);
 	margin-left: 1rem;
 	border-bottom: 0.1rem solid transparent;
@@ -37,6 +38,8 @@ body {
 	text-shadow: none;
 }
 
+.lead,
 .centered-items {
 	font-family: "Josefin Sans";
+	font-weight: 300;
 }
