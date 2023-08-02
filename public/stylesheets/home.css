@@ -1,7 +1,7 @@
 body {
 	height: 100vh;
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("https://images.unsplash.com/photo-1455763916899-e8b50eca9967?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+		url("https://res.cloudinary.com/fedupnow/image/upload/v1690935766/YelpCamp/Static/landing-image.jpg");
 	background-size: cover;
 	background-position: center;
 	text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
@@ -38,5 +38,5 @@ body {
 }
 
 .centered-items {
-    font-family: "Josefin Sans";
+	font-family: "Josefin Sans";
 }
