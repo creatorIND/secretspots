@@ -1,7 +1,7 @@
 # YelpCamp
 
-Unearth Hidden Gems: Explore underrated places beyond the ordinary.  
-Wanderlust awaits! Discover our curated list now.
+YelpCamp is a dynamic web application designed to uncover and showcase hidden gems and underrated destinations from all corners of the world. Built as an interactive course project, YelpCamp is powered by cutting-edge technologies such as Node.js, Express.js, MongoDB, and a blend of HTML, CSS, and JavaScript. Visitors are invited to embark on a virtual journey of exploration, sharing their own discoveries and experiences while discovering new places through a user-friendly interface.
 
-This is the first ever web application that I coded-along with Colt Steele in one of his courses 2 years ago. Recently updated with minor changes, also adding a live demo link:
-[Click here](https://yelpcamp-48l6n.ondigitalocean.app/)
+[App Link](https://yelpcamp-opxj.onrender.com)
+
+It may take some time :)
