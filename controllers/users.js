@@ -27,14 +27,18 @@ module.exports.renderLogin = (req, res) => {
 };
 
 module.exports.login = async (req, res) => {
-	req.flash("success", "WELCOME BACK!");
 	const redirectUrl = req.session.returnTo || "/campgrounds";
 	delete req.session.returnTo;
+	req.flash("success", "Oh hey, welcome back!");
 	res.redirect(redirectUrl);
 };
 
-module.exports.logout = (req, res) => {
-	req.logout();
-	req.flash("success", "YOU HAVE BEEN SUCCESSFULLY LOGGED OUT!");
-	res.redirect("/campgrounds");
+module.exports.logout = (req, res, next) => {
+	req.logout(function (err) {
+		if (err) {
+			return next(err);
+		}
+		req.flash("success", "You have been successfully logged out!");
+		res.redirect("/login");
+	});
 };
