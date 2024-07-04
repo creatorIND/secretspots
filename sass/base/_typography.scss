@@ -1,0 +1,49 @@
+body {
+	font-family: "Inter", sans-serif;
+	font-weight: 400;
+	font-size: $default-font-size;
+	color: $color-black;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+input,
+textarea,
+select {
+	font-family: inherit;
+	font-size: $default-font-size;
+}
+
+.link {
+	text-decoration: 0.5px underline dashed;
+	text-underline-offset: 3px;
+
+	&:hover,
+	&:active {
+		color: $color-secondary-light;
+		text-decoration: underline solid;
+	}
+}
+
+.heading-primary {
+	font-weight: 600;
+	font-size: 3.5rem;
+	letter-spacing: 0.2rem;
+
+	&--small {
+		font-size: 2rem;
+	}
+}
+
+.heading-secondary {
+	display: inline-block;
+	font-weight: 600;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 1.5rem;
+	letter-spacing: 0.3rem;
+	color: $color-secondary;
+}

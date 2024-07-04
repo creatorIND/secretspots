@@ -1,0 +1,78 @@
+.btn {
+	display: inline-block;
+	text-decoration: none;
+	border: none;
+	color: $color-white;
+	background-color: $color-blue;
+	padding: 1.5rem 2.5rem;
+	height: 5rem;
+	font-size: inherit;
+	font-weight: 400;
+	border-radius: 2rem;
+	transition: background-color 0.15s;
+	cursor: pointer;
+
+	&:hover,
+	&:active {
+		background-color: darken($color-blue, 5%);
+		text-decoration: none;
+	}
+
+	&--home {
+		color: $color-ulgrey;
+		background-color: transparent;
+		border: 2px solid rgba(255, 255, 255, 0.3);
+
+		&:hover,
+		&:active {
+			color: $color-white;
+			border-color: transparent;
+			background-color: rgba(255, 255, 255, 0.3);
+		}
+	}
+
+	&--white {
+		color: $color-primary;
+		background-color: $color-white;
+
+		&:hover,
+		&:active {
+			background-color: darken($color-white, 5%);
+		}
+	}
+
+	&--red {
+		color: $color-white;
+		background-color: $color-red;
+
+		&:hover,
+		&:active {
+			background-color: darken($color-red, 5%);
+		}
+	}
+
+	&--blue-light {
+		color: $color-white;
+		background-color: $color-blue-light;
+
+		&:hover,
+		&:active {
+			background-color: darken($color-blue-light, 5%);
+		}
+	}
+
+	&--primary {
+		color: $color-white;
+		background-color: $color-primary;
+
+		&:hover,
+		&:active {
+			background-color: darken($color-primary, 5%);
+		}
+	}
+
+	// &:hover,
+	// &:active {
+	// 	text-decoration: none;
+	// }
+}
