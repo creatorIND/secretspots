@@ -1,0 +1,9 @@
+@import "/star-rating/star-rating.min.css";
+
+:root {
+	--gl-star-color: #ffe234;
+	--gl-star-color-inactive: #dae3ea;
+	--gl-star-empty: url("/assets/icons/star-empty.svg");
+	--gl-star-full: url("/assets/icons/star-full.svg");
+	--gl-star-size: 30px;
+}
