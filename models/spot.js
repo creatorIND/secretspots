@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
+
 const Review = require("./review");
-const Schema = mongoose.Schema;
 
 const ImageSchema = new Schema({
 	url: String,
@@ -11,9 +12,9 @@ ImageSchema.virtual("thumbnail").get(function () {
 	return this.url.replace("/upload", "/upload/w_200");
 });
 
-const opts = { toJSON: { virtuals: true } };
+const opts = { toJSON: { virtuals: true }, toObject: { virtuals: true } };
 
-const CampgroundSchema = new Schema(
+const spotSchema = new Schema(
 	{
 		title: String,
 		images: [ImageSchema],
@@ -28,7 +29,7 @@ const CampgroundSchema = new Schema(
 				required: true,
 			},
 		},
-		price: Number,
+		// price: Number,
 		description: String,
 		location: String,
 		author: {
@@ -45,11 +46,11 @@ const CampgroundSchema = new Schema(
 	opts
 );
 
-CampgroundSchema.virtual("properties.popUpMarkup").get(function () {
-	return `<strong><a href="/campgrounds/${this._id}">${this.title}</a></strong>`;
+spotSchema.virtual("properties.popUpMarkup").get(function () {
+	return `<a class="link" href="/spots/${this._id}">${this.title}</a>`;
 });
 
-CampgroundSchema.post("findOneAndDelete", async function (doc) {
+spotSchema.post("findOneAndDelete", async function (doc) {
 	if (doc) {
 		await Review.deleteMany({
 			_id: {
@@ -59,4 +60,4 @@ CampgroundSchema.post("findOneAndDelete", async function (doc) {
 	}
 });
 
-module.exports = mongoose.model("Campground", CampgroundSchema);
+module.exports = mongoose.model("Spot", spotSchema);

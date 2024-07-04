@@ -16,18 +16,18 @@ const localStrategy = require("passport-local");
 const User = require("./models/user");
 const mongoSanitize = require("express-mongo-sanitize");
 const userRoutes = require("./routes/users");
-const campgroundRoutes = require("./routes/campgrounds");
+const spotRoutes = require("./routes/spots");
 const reviewRoutes = require("./routes/reviews");
 const helmet = require("helmet");
 const MongoStore = require("connect-mongo");
-const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
+// const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/yelpcamp";
+const dbUrl = "mongodb://localhost:27017/secretspots";
 
-mongoose.connect(dbUrl, {
-	useNewUrlParser: true,
-	useCreateIndex: true,
-	useUnifiedTopology: true,
-	useFindAndModify: false,
-});
+// mongoose.connect(dbUrl, {
+// 	dbName: "yelpcamp",
+// });
+
+mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -44,6 +44,12 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+	"/star-rating",
+	express.static(
+		path.join(__dirname, "node_modules", "star-rating.js", "dist")
+	)
+);
 app.use(
 	mongoSanitize({
 		replaceWith: "_",
@@ -147,20 +153,21 @@ app.use((req, res, next) => {
 });
 
 app.use("/", userRoutes);
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/reviews", reviewRoutes);
+app.use("/spots", spotRoutes);
+app.use("/spots/:id/reviews", reviewRoutes);
 
 app.get("/", (req, res) => {
 	res.render("home");
 });
 
 app.all("*", (req, res, next) => {
-	next(new ExpressError("PAGE NOT FOUND!!", 404));
+	next(new ExpressError("Page not found.", 404));
 });
 
 app.use((err, req, res, next) => {
 	const { statusCode = 500 } = err;
-	if (!err.message) err.message = "OH NO, SOMETHING WENT WRONG!";
+	err.statusCode = statusCode;
+	if (!err.message) err.message = "There was some unknown error.";
 	res.status(statusCode).render("error", { err });
 });
 

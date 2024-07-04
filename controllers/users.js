@@ -13,11 +13,21 @@ module.exports.register = async (req, res, next) => {
 			if (err) {
 				return next(err);
 			}
-			req.flash("success", "WELCOME TO YELP CAMP!");
-			res.redirect("/campgrounds");
+			req.flash(
+				"success",
+				"SecretSpots welcomes you! Your contribution will be appreciated."
+			);
+			res.redirect("/spots");
 		});
 	} catch (e) {
-		req.flash("error", e.message);
+		if (e.code && e.code === 11000) {
+			req.flash(
+				"error",
+				"A user with the given email is already registered"
+			);
+		} else {
+			req.flash("error", e.message);
+		}
 		res.redirect("/register");
 	}
 };
@@ -27,7 +37,7 @@ module.exports.renderLogin = (req, res) => {
 };
 
 module.exports.login = async (req, res) => {
-	const redirectUrl = req.session.returnTo || "/campgrounds";
+	const redirectUrl = req.session.returnTo || "/spots";
 	delete req.session.returnTo;
 	req.flash("success", "Oh hey, welcome back!");
 	res.redirect(redirectUrl);
