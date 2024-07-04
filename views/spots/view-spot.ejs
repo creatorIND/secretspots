@@ -1,0 +1,188 @@
+<% layout("./common/boilerplate") %>
+<head>
+	<link rel="stylesheet" href="/vendor/splide/splide.min.css" />
+	<link rel="stylesheet" href="/star-rating/star-rating.min.css" />
+	<link rel="stylesheet" href="/vendor/star-rating/custom-star-rating.css" />
+</head>
+<div class="spot">
+	<section class="spot__action">
+		<div id="map" class="spot__map"></div>
+		<div class="spot__buttons">
+			<a
+				target="_blank"
+				href="https://maps.google.com"
+				class="btn btn--primary"
+				>Open in Google Maps &#x2197;</a
+			>
+			<% if(currentUser && spot.author.equals(currentUser._id)) { %>
+			<a href="/spots/<%= spot._id %>/edit" class="btn btn--blue-light"
+				>Edit</a
+			>
+			<a href="/spots/<%= spot._id %>?_method=DELETE" class="btn btn--red"
+				>Delete</a
+			>
+			<% } %>
+		</div>
+		<div class="spot__review">
+			<div class="spot__reviewed">
+				<div class="spot__rating">
+					<img
+						class="spot__rating-icon"
+						src="/assets/icons/supreme-star.svg"
+						alt="enhanced star icon" />
+					<% const reviewCount = spot.reviews.length; let
+					averageRating = 0; if (reviewCount > 1) { const totalRatings
+					= spot.reviews.reduce((sum, review) => sum + review.rating,
+					0); averageRating = (totalRatings / reviewCount).toFixed(2);
+					} else if (reviewCount === 1) { averageRating =
+					spot.reviews[0].rating.toFixed(2); } %>
+					<span class="spot__rating-number">
+						<%= reviewCount > 0 ? averageRating : 0 %> / 5 (<%=
+						reviewCount %>)
+					</span>
+				</div>
+				<a class="link u-blue-text" href="#popup-reviews"
+					>Read all reviews</a
+				>
+			</div>
+			<div class="spot__new-review">
+				<div class="heading-primary heading-primary--small">
+					Already visited? Leave a review.
+				</div>
+				<form
+					action="/spots/<%= spot._id %>/reviews"
+					method="post"
+					class="form">
+					<div class="form__group">
+						<select
+							name="review[rating]"
+							class="star-rating"
+							required>
+							<option value="">Select a rating</option>
+							<option value="5">Excellent</option>
+							<option value="4">Very Good</option>
+							<option value="3">Average</option>
+							<option value="2">Poor</option>
+							<option value="1">Terrible</option>
+						</select>
+					</div>
+					<div class="form__group">
+						<textarea
+							placeholder="Describe your experience"
+							class="form__input form__input--textarea"
+							name="review[body]"
+							required></textarea>
+					</div>
+					<div class="form__group">
+						<button class="btn">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<section class="spot__info">
+		<div class="spot__images">
+			<% if(spot.images.length === 0) { %>
+			<img
+				class="spot__image"
+				src="/assets/img/blank-image.png"
+				alt="blank image placeholder" />
+			<% } else if(spot.images.length === 1) { %>
+			<img
+				class="spot__image"
+				src="<%= spot.images[0].url %>"
+				alt="Image of <%= spot.title %>" />
+			<% } else { %>
+			<div
+				id="image-carousel"
+				class="splide"
+				aria-label="current spot images">
+				<div class="splide__track">
+					<ul class="splide__list">
+						<% spot.images.forEach((image, i) => { %>
+						<li class="splide__slide" data-splide-interval="3000">
+							<img
+								class="spot__image"
+								src="<%= image.url %>"
+								alt="Image <%= i + 1 %> of <%= spot.title %>" />
+						</li>
+						<% }) %>
+					</ul>
+				</div>
+			</div>
+			<% } %>
+		</div>
+		<div class="spot__text">
+			<div class="spot__name"><%= spot.title %></div>
+			<div class="spot__location"><%= spot.location %></div>
+			<div class="spot__description">
+				porttitor lacus luctus accumsan tortor posuere ac ut consequat
+				semper viverra nam libero justo laoreet sit amet cursus sit amet
+				dictum sit amet justo donec enim diam vulputate ut pharetra sit
+				amet aliquam id diam maecenas ultricies mi eget mauris pharetra
+				et ultrices neque ornare aenean euismod elementum nisi quis
+			</div>
+		</div>
+	</section>
+</div>
+
+<div class="popup" id="popup-reviews">
+	<div class="popup__content">
+		<div class="heading-primary">All Reviews</div>
+		<a href="#" class="popup__close">&times;</a>
+		<div class="reviews__list">
+			<% for(let review of spot.reviews) { %>
+			<div class="reviews__item">
+				<div class="reviews__rating">
+					<img
+						class="reviews__rating-icon"
+						src="/assets/icons/supreme-star.svg"
+						alt="enhanced star icon" />
+					<span class="reviews__rating-number">
+						<%= review.rating %> / 5
+					</span>
+				</div>
+				<div class="reviews__username">
+					<%= review.author.username %>
+				</div>
+				<div class="reviews__body"><%= review.body %></div>
+				<% if(currentUser && review.author.equals(currentUser._id)) { %>
+				<form
+					class="u-right-text"
+					action="/spots/<%= spot._id %>/reviews/<%= review._id %>?_method=DELETE"
+					method="POST">
+					<button href="#" class="btn btn--red">Delete</button>
+				</form>
+				<% } %>
+			</div>
+			<% } %>
+		</div>
+	</div>
+</div>
+
+<script>
+	const mapToken = "<%- process.env.MAPBOX_TOKEN %>";
+	const spot = <%- JSON.stringify(spot) %>
+</script>
+<script src="/js/showPageMap.js"></script>
+
+<script src="/star-rating/star-rating.min.js"></script>
+<script>
+	let stars = new StarRating(".star-rating", {
+		tooltip: false,
+	});
+</script>
+
+<% if(spot.images.length > 1) { %>
+<script src="/vendor/splide/splide.min.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		new Splide("#image-carousel", {
+			rewind: true,
+			rewindByDrag: true,
+			autoplay: true,
+			pauseOnHover: true,
+		}).mount();
+	});
+</script>
+<% } %>

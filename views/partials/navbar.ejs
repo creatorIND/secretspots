@@ -1,7 +1,4 @@
-<nav
-	class="navbar sticky-top navbar-expand-lg navbar-dark"
-	style="background-color: #6a994e"
->
+<!-- <nav class="">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/">YelpCamp</a>
 		<button
@@ -18,8 +15,8 @@
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
 				<a class="nav-link" href="/">Home</a>
-				<a class="nav-link" href="/campgrounds">Campgrounds</a>
-				<a class="nav-link" href="/campgrounds/new">New Campground</a>
+				<a class="nav-link" href="/spots">Spots</a>
+				<a class="nav-link" href="/spots/new">New Spot</a>
 			</div>
 			<div class="navbar-nav ms-auto">
 				<% if(currentUser === undefined) { %>
@@ -31,4 +28,50 @@
 			</div>
 		</div>
 	</div>
-</nav>
+</nav> -->
+
+<div class="nav-wrapper">
+	<div class="navigation">
+		<input type="checkbox" class="navigation__checkbox" id="navi-toggle" />
+		<label for="navi-toggle" class="navigation__button">
+			<span class="navigation__icon">&nbsp;</span>
+		</label>
+		<div class="navigation__background">&nbsp;</div>
+		<div class="navigation__logo-box">
+			<a class="navigation__logo-link" href="/"
+				><img
+					class="navigation__logo"
+					src="/assets/logo.svg"
+					alt="logo"
+			/></a>
+		</div>
+		<nav class="navigation__nav">
+			<ul class="navigation__list">
+				<li class="navigation__item">
+					<a href="/" class="navigation__link">Home</a>
+				</li>
+				<li class="navigation__item">
+					<a href="/spots" class="navigation__link">All Spots</a>
+				</li>
+				<% if(currentUser === undefined) { %>
+				<li class="navigation__item">
+					<a href="/spots/new" class="navigation__link"
+						>Add New Spot</a
+					>
+				</li>
+				<li class="navigation__item">
+					<a href="/login" class="navigation__link">Login</a>
+				</li>
+				<% } %>
+			</ul>
+		</nav>
+		<div class="navigation__button-links">
+			<% if(currentUser === undefined) { %>
+			<a href="/register" class="btn btn--white">Register</a>
+			<% } else { %>
+			<a href="/spots/new" class="btn btn--white">Add New Spot</a>
+			<a href="/logout" class="btn btn--red">Logout</a>
+			<% } %>
+		</div>
+	</div>
+</div>

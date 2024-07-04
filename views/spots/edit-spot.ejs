@@ -1,0 +1,106 @@
+<% layout("./common/boilerplate") %>
+<div class="edit-spot">
+	<div class="heading-primary">Edit Spot</div>
+	<form
+		action="/spots/<%= spot._id %>?_method=PUT"
+		method="post"
+		class="form"
+		enctype="multipart/form-data">
+		<div class="form__group">
+			<label for="title" class="form__label">Title</label>
+			<input
+				placeholder="Enter Spot Title"
+				type="text"
+				class="form__input"
+				id="title"
+				name="spot[title]"
+				value="<%= spot.title %>"
+				required
+				autofocus />
+		</div>
+		<div class="form__group">
+			<label for="location" class="form__label">Location</label>
+			<input
+				placeholder="Enter Spot Location"
+				type="text"
+				class="form__input"
+				id="location"
+				name="spot[location]"
+				value="<%= spot.location %>"
+				required />
+		</div>
+		<div class="form__group">
+			<label for="image" class="form__file-group">
+				<div class="form__label">Update Images</div>
+				<div tabindex="0" class="form__file-visible-input">
+					<span>
+						<img
+							class="form__file-upload-icon"
+							src="/assets/icons/file-upload.svg"
+							alt="" />
+					</span>
+					<span class="form__file-text">Upload New File(s)</span>
+				</div>
+			</label>
+			<input
+				tabindex="-1"
+				type="file"
+				class="form__file-input"
+				id="image"
+				name="image"
+				data-multiple-caption="{count} file(s) selected"
+				multiple />
+			<% if(spot.images.length > 0) { %>
+			<div class="existing-images">
+				<% spot.images.forEach(function(img, i) { %>
+				<div class="existing-images__item">
+					<img
+						src="<%= img.thumbnail %>"
+						alt="spot image"
+						class="existing-images__image" />
+					<div class="existing-images__form">
+						<label
+							class="form__checkbox-label"
+							for="image-<%= i %>">
+							Delete
+							<input
+								class="form__checkbox-input"
+								type="checkbox"
+								id="image-<%= i %>"
+								name="deleteImages[]"
+								value="<%= img.filename %>" />
+							<span class="form__checkbox-button"></span>
+						</label>
+					</div>
+				</div>
+				<% }) %>
+			</div>
+			<% } %>
+		</div>
+		<div class="form__group">
+			<label for="description" class="form__label">Description</label>
+			<textarea
+				placeholder="Enter Spot Description (Max 500 Characters)"
+				type="text"
+				class="form__input form__input--textarea"
+				id="description"
+				name="spot[description]"
+				rows="8"
+				required>
+			</textarea>
+		</div>
+		<div class="form__group">
+			<div>
+				<button class="btn">Update Spot</button>
+				<a
+					href="/spots/<%= spot._id %>"
+					class="btn btn--red u-left-margin-2rem"
+					>Cancel</a
+				>
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+	document.querySelector(".form__input--textarea").value = <%- JSON.stringify(spot.description) %>
+</script>

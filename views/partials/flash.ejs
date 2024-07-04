@@ -1,21 +1,20 @@
 <% if(success && success.length) { %>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-	<%= success %>
-	<button
-		type="button"
-		class="btn-close"
-		data-bs-dismiss="alert"
-		aria-label="Close"
-	></button>
+<div class="flash flash--success" role="alert">
+	<img
+		class="flash__icon"
+		src="/assets/icons/flash-success.svg"
+		alt="green success icon" />
+	<div class="flash__message"><%= success %></div>
+	<div class="flash__close">&times;</div>
 </div>
 <% } %> <% if(error && error.length) { %>
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-	<%= error %>
-	<button
-		type="button"
-		class="btn-close"
-		data-bs-dismiss="alert"
-		aria-label="Close"
-	></button>
+<div class="flash flash--error" role="alert">
+	<img
+		class="flash__icon"
+		src="/assets/icons/flash-error.svg"
+		alt="red warning icon" />
+	<div class="flash__message"><%= error %></div>
+	<div class="flash__close">&times;</div>
 </div>
 <% } %>
+<script src="/js/toggleFlash.js"></script>

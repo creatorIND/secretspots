@@ -1,0 +1,67 @@
+<% layout("./common/boilerplate") %>
+<div class="new-spot">
+	<div class="heading-primary">New Spot</div>
+	<form
+		action="/spots"
+		method="post"
+		class="form"
+		enctype="multipart/form-data">
+		<div class="form__group">
+			<label for="title" class="form__label">Title</label>
+			<input
+				placeholder="Enter Spot Title"
+				type="text"
+				class="form__input"
+				id="title"
+				name="spot[title]"
+				required
+				autofocus />
+		</div>
+		<div class="form__group">
+			<label for="location" class="form__label">Location</label>
+			<input
+				placeholder="Enter Spot Location"
+				type="text"
+				class="form__input"
+				id="location"
+				name="spot[location]"
+				required />
+		</div>
+		<div class="form__group">
+			<label for="image" class="form__file-group">
+				<div class="form__label">Add Images</div>
+				<div tabindex="0" class="form__file-visible-input">
+					<span>
+						<img
+							class="form__file-upload-icon"
+							src="/assets/icons/file-upload.svg"
+							alt="" />
+					</span>
+					<span class="form__file-text">Upload File(s)</span>
+				</div>
+			</label>
+			<input
+				tabindex="-1"
+				type="file"
+				class="form__file-input"
+				id="image"
+				name="image"
+				data-multiple-caption="{count} file(s) selected"
+				multiple />
+		</div>
+		<div class="form__group">
+			<label for="description" class="form__label">Description</label>
+			<textarea
+				placeholder="Enter Spot Description (Max 500 Characters)"
+				type="text"
+				class="form__input form__input--textarea"
+				id="description"
+				name="spot[description]"
+				rows="8"
+				required></textarea>
+		</div>
+		<div class="form__group">
+			<button class="btn">Add Spot</button>
+		</div>
+	</form>
+</div>
