@@ -127,9 +127,10 @@
 </div>
 
 <div class="popup" id="popup-reviews">
-	<div class="popup__content">
-		<div class="heading-primary">All Reviews</div>
+	<div class="popup__content reviews">
+		<div class="reviews__heading">All Reviews</div>
 		<a href="#" class="popup__close">&times;</a>
+		<% if(spot.reviews.length > 0) { %>
 		<div class="reviews__list">
 			<% for(let review of spot.reviews) { %>
 			<div class="reviews__item">
@@ -157,6 +158,15 @@
 			</div>
 			<% } %>
 		</div>
+		<% } else { %>
+		<div class="reviews__empty">
+			<img
+				class="reviews__empty-image"
+				src="/assets/icons/reviews-empty.svg"
+				alt="sad face emoji" />
+			<div>No reviews yet!</div>
+		</div>
+		<% } %>
 	</div>
 </div>
 

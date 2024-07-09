@@ -64,12 +64,15 @@
 							for="image-<%= i %>">
 							Delete
 							<input
+								tabindex="-1"
 								class="form__checkbox-input"
 								type="checkbox"
 								id="image-<%= i %>"
 								name="deleteImages[]"
 								value="<%= img.filename %>" />
-							<span class="form__checkbox-button"></span>
+							<span
+								tabindex="0"
+								class="form__checkbox-button"></span>
 						</label>
 					</div>
 				</div>
@@ -89,7 +92,7 @@
 				required>
 			</textarea>
 		</div>
-		<div class="form__group">
+		<div class="form__group u-margin-top-small">
 			<div>
 				<button class="btn">Update Spot</button>
 				<a
