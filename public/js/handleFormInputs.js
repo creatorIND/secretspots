@@ -44,3 +44,23 @@ document
 			}
 		});
 	});
+
+// Handle keyboard navigation of custom checkboxes and radios
+document
+	.querySelectorAll(".form__checkbox-button, .form__radio-button")
+	.forEach(function (visibleInput) {
+		const input = visibleInput.previousElementSibling;
+		visibleInput.addEventListener("keydown", function (e) {
+			if (e.key === " ") {
+				e.preventDefault();
+
+				if (input.type === "checkbox") {
+					input.checked = !input.checked;
+				} else if (input.type === "radio") {
+					input.checked = true;
+				}
+			} else if (e.key === "Enter") {
+				input.form.submit();
+			}
+		});
+	});
