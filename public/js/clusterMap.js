@@ -4,8 +4,7 @@ const map = new mapboxgl.Map({
 	container: "clusterMap",
 	projection: "equirectangular",
 	style: "mapbox://styles/mapbox/standard",
-	center: [77.2090057, 28.6138954],
-	// center: [-103.59179687498357, 40.66995747013945],
+	center: [78.15517474813514, 22.856404790737756],
 	zoom: 3,
 });
 
