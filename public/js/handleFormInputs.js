@@ -67,7 +67,7 @@ document
 
 // Display character count in textareas
 document
-	.querySelectorAll(".form__input--textarea")
+	.querySelectorAll(".textarea-with-counter")
 	.forEach(function (textarea) {
 		const charCount = textarea.nextElementSibling;
 		const maxLength = textarea.getAttribute("maxlength");
