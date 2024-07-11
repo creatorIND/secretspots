@@ -18,9 +18,9 @@
 			<a href="/spots/<%= spot._id %>/edit" class="btn btn--blue-light"
 				>Edit</a
 			>
-			<a href="/spots/<%= spot._id %>?_method=DELETE" class="btn btn--red"
-				>Delete</a
-			>
+			<form action="/spots/<%= spot._id %>?_method=DELETE" method="POST">
+				<button class="btn btn--red">Delete</button>
+			</form>
 			<% } %>
 		</div>
 		<div class="spot__review">
@@ -115,13 +115,7 @@
 		<div class="spot__text">
 			<div class="spot__name"><%= spot.name %></div>
 			<div class="spot__location"><%= spot.location %></div>
-			<div class="spot__description">
-				porttitor lacus luctus accumsan tortor posuere ac ut consequat
-				semper viverra nam libero justo laoreet sit amet cursus sit amet
-				dictum sit amet justo donec enim diam vulputate ut pharetra sit
-				amet aliquam id diam maecenas ultricies mi eget mauris pharetra
-				et ultrices neque ornare aenean euismod elementum nisi quis
-			</div>
+			<div class="spot__description"><%= spot.description %></div>
 		</div>
 	</section>
 </div>
@@ -152,7 +146,7 @@
 					class="u-right-text"
 					action="/spots/<%= spot._id %>/reviews/<%= review._id %>?_method=DELETE"
 					method="POST">
-					<button href="#" class="btn btn--red">Delete</button>
+					<button class="btn btn--red">Delete</button>
 				</form>
 				<% } %>
 			</div>

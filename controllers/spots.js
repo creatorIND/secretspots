@@ -98,12 +98,14 @@ module.exports.updateSpot = async (req, res) => {
 		...req.body.spot,
 		geometry: req.body.spot.geometry,
 	});
+
 	const images = req.files.map((f) => ({
 		url: f.path,
 		filename: f.filename,
 	}));
 	spot.images.push(...images);
 	await spot.save();
+
 	if (req.body.deleteImages) {
 		for (let filename of req.body.deleteImages) {
 			await cloudinary.uploader.destroy(filename);
@@ -112,6 +114,7 @@ module.exports.updateSpot = async (req, res) => {
 			$pull: { images: { filename: { $in: req.body.deleteImages } } },
 		});
 	}
+
 	req.flash("success", "Spot successfully updated.");
 	res.redirect(`/spots/${spot._id}`);
 };
