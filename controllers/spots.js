@@ -22,6 +22,13 @@ module.exports.createSpot = async (req, res, next) => {
 			limit: 1,
 		})
 		.send();
+	if (!geoData.body.features || geoData.body.features.length === 0) {
+		req.flash(
+			"error",
+			"Location not found. Please enter a valid location."
+		);
+		return res.redirect("/spots/new");
+	}
 	const spot = new Spot(req.body.spot);
 	spot.geometry = geoData.body.features[0].geometry;
 	spot.images = req.files.map((f) => ({
@@ -62,8 +69,34 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateSpot = async (req, res) => {
 	const { id } = req.params;
+
+	const currentSpot = await Spot.findById(id);
+	if (
+		req.body.spot.location &&
+		req.body.spot.location !== currentSpot.location
+	) {
+		const geoData = await geocoder
+			.forwardGeocode({
+				query: req.body.spot.location,
+				limit: 1,
+			})
+			.send();
+
+		if (!geoData.body.features || geoData.body.features.length === 0) {
+			req.flash(
+				"error",
+				"Location not found. Please enter a valid location."
+			);
+			return res.redirect(`/spots/${id}/edit`);
+		}
+		req.body.spot.geometry = geoData.body.features[0].geometry;
+	} else {
+		req.body.spot.geometry = currentSpot.geometry;
+	}
+
 	const spot = await Spot.findByIdAndUpdate(id, {
 		...req.body.spot,
+		geometry: req.body.spot.geometry,
 	});
 	const images = req.files.map((f) => ({
 		url: f.path,
