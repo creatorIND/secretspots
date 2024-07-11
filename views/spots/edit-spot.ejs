@@ -7,16 +7,15 @@
 		class="form"
 		enctype="multipart/form-data">
 		<div class="form__group">
-			<label for="title" class="form__label">Title</label>
+			<label for="name" class="form__label">Name</label>
 			<input
-				placeholder="Enter Spot Title"
+				placeholder="Enter Spot Name"
 				type="text"
 				class="form__input"
-				id="title"
-				name="spot[title]"
-				value="<%= spot.title %>"
-				required
-				autofocus />
+				id="name"
+				name="spot[name]"
+				value="<%= spot.name %>"
+				required />
 		</div>
 		<div class="form__group">
 			<label for="location" class="form__label">Location</label>

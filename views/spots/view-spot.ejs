@@ -91,7 +91,7 @@
 			<img
 				class="spot__image"
 				src="<%= spot.images[0].url %>"
-				alt="Image of <%= spot.title %>" />
+				alt="Image of <%= spot.name %>"
 			<% } else { %>
 			<div
 				id="image-carousel"
@@ -104,7 +104,7 @@
 							<img
 								class="spot__image"
 								src="<%= image.url %>"
-								alt="Image <%= i + 1 %> of <%= spot.title %>" />
+								alt="Image <%= i + 1 %> of <%= spot.name %>"
 						</li>
 						<% }) %>
 					</ul>
@@ -113,7 +113,7 @@
 			<% } %>
 		</div>
 		<div class="spot__text">
-			<div class="spot__name"><%= spot.title %></div>
+			<div class="spot__name"><%= spot.name %></div>
 			<div class="spot__location"><%= spot.location %></div>
 			<div class="spot__description">
 				porttitor lacus luctus accumsan tortor posuere ac ut consequat

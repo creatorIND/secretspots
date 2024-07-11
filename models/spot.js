@@ -16,7 +16,7 @@ const opts = { toJSON: { virtuals: true }, toObject: { virtuals: true } };
 
 const spotSchema = new Schema(
 	{
-		title: String,
+		name: String,
 		images: [ImageSchema],
 		geometry: {
 			type: {
@@ -29,7 +29,6 @@ const spotSchema = new Schema(
 				required: true,
 			},
 		},
-		// price: Number,
 		description: String,
 		location: String,
 		author: {
@@ -47,7 +46,7 @@ const spotSchema = new Schema(
 );
 
 spotSchema.virtual("properties.popUpMarkup").get(function () {
-	return `<a class="link" href="/spots/${this._id}">${this.title}</a>`;
+	return `<a class="link" href="/spots/${this._id}">${this.name}</a>`;
 });
 
 spotSchema.post("findOneAndDelete", async function (doc) {
