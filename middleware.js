@@ -1,12 +1,23 @@
-const { spotSchema, reviewSchema } = require("./schemas");
-const ExpressError = require("./utils/ExpressError");
+const mongoose = require("mongoose");
+
 const Spot = require("./models/spot");
 const Review = require("./models/review");
+
+const ExpressError = require("./utils/ExpressError");
+const { spotSchema, reviewSchema } = require("./schemas");
 
 module.exports.isLoggedIn = (req, res, next) => {
 	if (!req.isAuthenticated()) {
 		req.flash("error", "You must be logged in first.");
 		return res.redirect("/login");
+	}
+	next();
+};
+
+module.exports.validateObjectId = (req, res, next) => {
+	if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+		req.flash("error", "Invalid ID.");
+		return res.redirect("/spots");
 	}
 	next();
 };

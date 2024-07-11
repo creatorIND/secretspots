@@ -4,7 +4,12 @@ const multer = require("multer");
 const { storage } = require("../cloudinary");
 const upload = multer({ storage });
 
-const { isLoggedIn, isAuthor, validateSpot } = require("../middleware");
+const {
+	isLoggedIn,
+	isAuthor,
+	validateSpot,
+	validateObjectId,
+} = require("../middleware");
 
 const spots = require("../controllers/spots");
 const catchAsync = require("../utils/catchAsync");
@@ -23,7 +28,7 @@ router.get("/new", isLoggedIn, spots.renderNewForm);
 
 router
 	.route("/:id")
-	.get(catchAsync(spots.showSpot))
+	.get(validateObjectId, catchAsync(spots.showSpot))
 	.put(
 		isLoggedIn,
 		isAuthor,
@@ -33,6 +38,12 @@ router
 	)
 	.delete(isLoggedIn, isAuthor, catchAsync(spots.deleteSpot));
 
-router.get("/:id/edit", isLoggedIn, isAuthor, catchAsync(spots.renderEditForm));
+router.get(
+	"/:id/edit",
+	validateObjectId,
+	isLoggedIn,
+	isAuthor,
+	catchAsync(spots.renderEditForm)
+);
 
 module.exports = router;
