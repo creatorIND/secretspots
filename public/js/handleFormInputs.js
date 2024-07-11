@@ -64,3 +64,16 @@ document
 			}
 		});
 	});
+
+// Display character count in textareas
+document
+	.querySelectorAll(".form__input--textarea")
+	.forEach(function (textarea) {
+		const charCount = textarea.nextElementSibling;
+		const maxLength = textarea.getAttribute("maxlength");
+
+		textarea.addEventListener("input", () => {
+			const currentLength = textarea.value.length;
+			charCount.textContent = `Character Count: ${currentLength} / ${maxLength}`;
+		});
+	});

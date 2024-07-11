@@ -96,8 +96,12 @@
 				id="description"
 				name="spot[description]"
 				rows="8"
+				maxlength="500"
 				required>
 			</textarea>
+			<small class="u-margin-left-tiny"
+				>Character Count: <%= spot.description.length %> / 500</small
+			>
 		</div>
 		<div class="form__group u-margin-top-small">
 			<div>
