@@ -30,6 +30,18 @@
 				<li class="navigation__item">
 					<a href="/login" class="navigation__link">Login</a>
 				</li>
+				<li class="navigation__item navigation__item--mobile">
+					<a href="/register" class="navigation__link">Register</a>
+				</li>
+				<% } else { %>
+				<li class="navigation__item navigation__item--mobile">
+					<a href="/spots/new" class="navigation__link"
+						>Add New Spot</a
+					>
+				</li>
+				<li class="navigation__item navigation__item--mobile">
+					<a href="/logout" class="navigation__link">Logout</a>
+				</li>
 				<% } %>
 			</ul>
 		</nav>
