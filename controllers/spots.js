@@ -60,7 +60,6 @@ module.exports.showSpot = async (req, res) => {
 	const googleMapsUrl = encodeURI(
 		`${googleMapsBaseUrl}&query=${latitude},${longitude}`
 	);
-	console.log(googleMapsUrl);
 	res.render("spots/view-spot", { spot, googleMapsUrl, title: spot.name });
 };
 
