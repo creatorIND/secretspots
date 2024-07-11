@@ -1,7 +1,7 @@
 const User = require("../models/user");
 
 module.exports.renderRegister = (req, res) => {
-	res.render("users/register");
+	res.render("users/register", { title: "Register" });
 };
 
 module.exports.register = async (req, res, next) => {
@@ -13,28 +13,42 @@ module.exports.register = async (req, res, next) => {
 			if (err) {
 				return next(err);
 			}
-			req.flash("success", "WELCOME TO YELP CAMP!");
-			res.redirect("/campgrounds");
+			req.flash(
+				"success",
+				"SecretSpots welcomes you! Your contribution will be appreciated."
+			);
+			res.redirect("/spots");
 		});
 	} catch (e) {
-		req.flash("error", e.message);
+		if (e.code && e.code === 11000) {
+			req.flash(
+				"error",
+				"A user with the given email is already registered"
+			);
+		} else {
+			req.flash("error", e.message);
+		}
 		res.redirect("/register");
 	}
 };
 
 module.exports.renderLogin = (req, res) => {
-	res.render("users/login");
+	res.render("users/login", { title: "Login" });
 };
 
 module.exports.login = async (req, res) => {
-	req.flash("success", "WELCOME BACK!");
-	const redirectUrl = req.session.returnTo || "/campgrounds";
+	const redirectUrl = req.session.returnTo || "/spots";
 	delete req.session.returnTo;
+	req.flash("success", "Oh hey, welcome back!");
 	res.redirect(redirectUrl);
 };
 
-module.exports.logout = (req, res) => {
-	req.logout();
-	req.flash("success", "YOU HAVE BEEN SUCCESSFULLY LOGGED OUT!");
-	res.redirect("/campgrounds");
+module.exports.logout = (req, res, next) => {
+	req.logout(function (err) {
+		if (err) {
+			return next(err);
+		}
+		req.flash("success", "You have been successfully logged out!");
+		res.redirect("/login");
+	});
 };

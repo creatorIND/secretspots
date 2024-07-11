@@ -1,15 +1,11 @@
 const mongoose = require("mongoose");
 const cities = require("./cities");
 const { places, descriptors } = require("./seedHelpers");
-const Campground = require("../models/campground");
-const dBUrl = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
+const Spot = require("../models/spot");
+// const dBUrl = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
+const dBUrl = "mongodb://localhost:27017/secretspots";
 
-mongoose.connect(dBUrl, {
-	useNewUrlParser: true,
-	useCreateIndex: true,
-	useUnifiedTopology: true,
-});
-
+mongoose.connect(dBUrl);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
@@ -19,17 +15,17 @@ db.once("open", () => {
 const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
-	await Campground.deleteMany({});
+	await Spot.deleteMany({});
 	for (let i = 0; i < 300; i++) {
 		const random1000 = Math.floor(Math.random() * 1000);
-		const price = Math.floor(Math.random() * 20) + 10;
-		const camp = new Campground({
-			author: "60d216a0ed131b352c806c80" || "60c787264fe84731d464d01c",
+		// const price = Math.floor(Math.random() * 20) + 10;
+		const spot = new Spot({
+			author: "6683a7812a446e9af6b9b282",
 			location: `${cities[random1000].city}, ${cities[random1000].state}`,
 			title: `${sample(descriptors)} ${sample(places)}`,
 			description:
 				"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias nam, magnam exercitationem sequi repellendus eveniet delectus perspiciatis atque deserunt quia voluptatum totam quaerat corrupti suscipit veniam minima! Autem, odit ducimus?",
-			price,
+			// price,
 			geometry: {
 				type: "Point",
 				coordinates: [
@@ -39,16 +35,16 @@ const seedDB = async () => {
 			},
 			images: [
 				{
-					url: "https://res.cloudinary.com/fedupnow/image/upload/v1624283840/YelpCamp/thumb-1920-600293_wsjzhr.jpg",
-					filename: "YelpCamp/thumb-1920-600293_wsjzhr",
+					url: "https://res.cloudinary.com/fedupnow/image/upload/v1717758688/YelpCamp/vjbtkidqivlnhec7pnou.jpg",
+					filename: "YelpCamp/vjbtkidqivlnhec7pnou",
 				},
 				{
-					url: "https://res.cloudinary.com/fedupnow/image/upload/v1624283830/YelpCamp/18621_i7y2dn.jpg",
-					filename: "YelpCamp/18621_i7y2dn",
+					url: "https://res.cloudinary.com/fedupnow/image/upload/v1717758687/YelpCamp/f5qdpmisslmai8okshmc.jpg",
+					filename: "YelpCamp/f5qdpmisslmai8okshmc",
 				},
 			],
 		});
-		await camp.save();
+		await spot.save();
 	}
 };
 

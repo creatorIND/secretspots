@@ -1,0 +1,128 @@
+.auth {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	padding: 2rem 8rem;
+
+	@include respond(tab-land) {
+		width: 85%;
+		padding: 2rem 4rem;
+	}
+
+	@include respond(tab-port) {
+		width: 95%;
+		padding: 2rem;
+	}
+
+	@include respond(phone) {
+		margin-top: 4rem;
+		width: 90%;
+		padding: 0;
+		flex-direction: column;
+		border-radius: 4rem;
+		border-bottom: 4px solid $color-secondary;
+		border-left: 4px solid $color-secondary;
+		border-right: 4px solid $color-secondary;
+	}
+
+	&--login {
+		height: 70rem;
+
+		@include respond(phone) {
+			height: 90rem;
+		}
+	}
+
+	&--register {
+		height: 80rem;
+
+		@include respond(phone) {
+			height: 100rem;
+		}
+	}
+
+	&__image-box {
+		width: 50%;
+		height: 100%;
+
+		@include respond(phone) {
+			width: 100%;
+			height: 30%;
+		}
+	}
+
+	&__image {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+		border-radius: 4rem 0 0 4rem;
+
+		@include respond(phone) {
+			border-top: 4px solid $color-secondary;
+			border-radius: 4rem 4rem 2rem 2rem;
+		}
+
+		&--login {
+			object-position: right;
+		}
+
+		&--register {
+			object-position: left;
+		}
+	}
+
+	& .form {
+		padding: 0 5rem;
+
+		@include respond(tab-port) {
+			padding: 0 2rem;
+		}
+
+		&__group {
+			flex-basis: 100%;
+		}
+	}
+
+	&__main {
+		width: 50%;
+		height: 100%;
+		padding: 4rem;
+		border-radius: 0 4rem 4rem 0;
+		border-top: 4px solid $color-secondary;
+		border-right: 4px solid $color-secondary;
+		border-bottom: 4px solid $color-secondary;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 3rem;
+		overflow-y: auto;
+
+		@include respond(phone) {
+			width: 100%;
+			height: 70%;
+			border: none;
+			padding: 3rem;
+		}
+	}
+
+	&__logo-box {
+		height: 8rem;
+	}
+
+	&__logo {
+		height: 100%;
+		vertical-align: middle;
+	}
+
+	&__divider {
+		width: 55%;
+		border: 0.2rem solid $color-ulgrey;
+	}
+
+	&__heading {
+		color: $color-secondary;
+		margin-top: 1rem;
+	}
+}

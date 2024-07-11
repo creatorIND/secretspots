@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SecretSpots <%= " | " + title %></title>
+		<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+		<script
+			src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"
+			crossorigin="anonymous"></script>
+		<link
+			href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css"
+			rel="stylesheet"
+			crossorigin="anonymous" />
+		<link rel="stylesheet" href="/css/style.css" />
+	</head>
+	<body style="min-height: 100vh">
+		<%- include("../partials/navbar") %>
+		<main class="base__main">
+			<%- include("../partials/flash") %> <%- body %>
+		</main>
+		<%- include("../partials/footer") %>
+		<script src="/js/handleFormInputs.js"></script>
+	</body>
+</html>

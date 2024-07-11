@@ -1,0 +1,39 @@
+.footer {
+	background-color: $color-secondary;
+	color: $color-lgrey;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 4rem;
+	margin-top: 2rem;
+	padding: 4rem;
+	border-radius: 2rem 2rem 0 0;
+
+	&__main {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 4rem;
+
+		@include respond(phone) {
+			gap: 2rem;
+		}
+	}
+
+	&__logo-box {
+		width: 13rem;
+		height: 100%;
+	}
+
+	&__logo {
+		width: 100%;
+		height: auto;
+		vertical-align: middle;
+	}
+
+	&__small {
+		font-size: 1.5rem;
+	}
+}

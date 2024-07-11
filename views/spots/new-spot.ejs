@@ -1,0 +1,81 @@
+<% layout("./common/boilerplate") %>
+<div class="new-spot">
+	<div class="heading-primary">New Spot</div>
+	<form
+		action="/spots"
+		method="post"
+		class="form"
+		enctype="multipart/form-data">
+		<div class="form__group">
+			<label for="name" class="form__label">Name</label>
+			<input
+				placeholder="Enter Spot Name"
+				type="text"
+				class="form__input"
+				id="name"
+				name="spot[name]"
+				required
+				autofocus />
+		</div>
+		<div class="form__group">
+			<label for="location" class="form__label">Location</label>
+			<input
+				placeholder="Enter Spot Location"
+				type="text"
+				class="form__input"
+				id="location"
+				name="spot[location]"
+				required />
+		</div>
+		<div class="form__group">
+			<label for="image" class="form__file-group">
+				<div class="form__label">
+					Add Images <small>(Aspect ratio 16:9 recommended)</small>
+				</div>
+				<div tabindex="0" class="form__file-visible-input">
+					<span>
+						<img
+							class="form__file-upload-icon"
+							src="/assets/icons/file-upload.svg"
+							alt="upload icon" />
+					</span>
+					<span class="form__file-text"
+						>Upload File(s) - jpeg, jpg, png</span
+					>
+				</div>
+			</label>
+			<input
+				tabindex="-1"
+				type="file"
+				class="form__file-input"
+				id="image"
+				name="image"
+				accept=".jpeg, .jpg, .png"
+				data-multiple-caption="{count} file(s) selected"
+				multiple />
+		</div>
+		<div class="form__group">
+			<label for="description" class="form__label"
+				>Description <small>(Max. 500 characters)</small></label
+			>
+			<textarea
+				placeholder="Enter Spot Description"
+				type="text"
+				class="form__input form__input--textarea textarea-with-counter"
+				id="description"
+				name="spot[description]"
+				rows="8"
+				maxlength="500"
+				required></textarea>
+			<small class="u-margin-left-tiny">Character Count: 0 / 500</small>
+		</div>
+		<div class="form__group u-margin-top-small">
+			<div>
+				<button class="btn">Add Spot</button>
+				<a href="/spots" class="btn btn--red u-left-margin-2rem"
+					>Cancel</a
+				>
+			</div>
+		</div>
+	</form>
+</div>

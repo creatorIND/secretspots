@@ -1,34 +1,57 @@
-<nav
-	class="navbar sticky-top navbar-expand-lg navbar-dark"
-	style="background-color: #6a994e"
->
-	<div class="container-fluid">
-		<a class="navbar-brand" href="/">YelpCamp</a>
-		<button
-			class="navbar-toggler"
-			type="button"
-			data-bs-toggle="collapse"
-			data-bs-target="#navbarNavAltMarkup"
-			aria-controls="navbarNavAltMarkup"
-			aria-expanded="false"
-			aria-label="Toggle navigation"
-		>
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-			<div class="navbar-nav">
-				<a class="nav-link" href="/">Home</a>
-				<a class="nav-link" href="/campgrounds">Campgrounds</a>
-				<a class="nav-link" href="/campgrounds/new">New Campground</a>
-			</div>
-			<div class="navbar-nav ms-auto">
+<div class="nav-wrapper">
+	<div class="navigation">
+		<input type="checkbox" class="navigation__checkbox" id="navi-toggle" />
+		<label for="navi-toggle" class="navigation__button">
+			<span class="navigation__icon">&nbsp;</span>
+		</label>
+		<div class="navigation__background">&nbsp;</div>
+		<div class="navigation__logo-box">
+			<a class="navigation__logo-link" href="/"
+				><img
+					class="navigation__logo"
+					src="/assets/logo.svg"
+					alt="SecretSpots logo"
+			/></a>
+		</div>
+		<nav class="navigation__nav">
+			<ul class="navigation__list">
+				<li class="navigation__item">
+					<a href="/" class="navigation__link">Home</a>
+				</li>
+				<li class="navigation__item">
+					<a href="/spots" class="navigation__link">All Spots</a>
+				</li>
 				<% if(currentUser === undefined) { %>
-				<a href="/login" class="nav-link">Login</a>
-				<a href="/register" class="nav-link">Register</a>
+				<li class="navigation__item">
+					<a href="/spots/new" class="navigation__link"
+						>Add New Spot</a
+					>
+				</li>
+				<li class="navigation__item">
+					<a href="/login" class="navigation__link">Login</a>
+				</li>
+				<li class="navigation__item navigation__item--mobile">
+					<a href="/register" class="navigation__link">Register</a>
+				</li>
 				<% } else { %>
-				<a href="/logout" class="nav-link">Logout</a>
+				<li class="navigation__item navigation__item--mobile">
+					<a href="/spots/new" class="navigation__link"
+						>Add New Spot</a
+					>
+				</li>
+				<li class="navigation__item navigation__item--mobile">
+					<a href="/logout" class="navigation__link">Logout</a>
+				</li>
 				<% } %>
-			</div>
+			</ul>
+		</nav>
+		<div class="navigation__button-links">
+			<% if(currentUser === undefined) { %>
+			<a href="/register" class="btn btn--white">Register</a>
+			<% } else { %>
+			<a href="/spots/new" class="btn btn--white">Add New Spot</a>
+			<a href="/logout" class="btn btn--red">Logout</a>
+			<% } %>
 		</div>
 	</div>
-</nav>
+</div>

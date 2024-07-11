@@ -1,0 +1,57 @@
+<% layout("./common/boilerplate") %>
+<main class="spots">
+	<section class="spots__header">
+		<div class="spots__map" id="clusterMap"></div>
+		<div class="heading-primary">All Spots</div>
+		<form class="form" method="get" action="">
+			<div class="form__group">
+				<label class="form__label" for="country"
+					>Filter by Location:</label
+				>
+				<input
+					class="form__input"
+					type="text"
+					placeholder="Enter Location" />
+			</div>
+			<div class="form__group">
+				<button class="btn">Go</button>
+			</div>
+		</form>
+	</section>
+	<section class="spots__list">
+		<% for(let spot of spots) { %>
+		<a
+			style="
+				background: linear-gradient(
+						180deg,
+						rgba(0, 0, 0, 0.04) 0%,
+						rgba(0, 0, 0, 0.4) 100%
+					),
+					url('<%= (spot.images.length > 0) ? spot.images[0].url : "/assets/img/blank-image.png" %>')
+						lightgray 50% / cover no-repeat;
+			"
+			class="spots__item"
+			href="/spots/<%= spot._id %>">
+			<div class="spots__info">
+				<div>
+					<div class="spots__name"><%= spot.name %></div>
+					<div class="spots__place"><%= spot.location %></div>
+				</div>
+				<div>
+					<img
+						class="spots__arrow-icon"
+						src="/assets/icons/arrow-forward.svg"
+						alt="forward arrow icon" />
+				</div>
+			</div>
+		</a>
+		<% } %>
+	</section>
+</main>
+
+<script>
+	const mapToken = "<%- process.env.MAPBOX_TOKEN %>";
+	const spots = {features: <%- JSON.stringify(spots) %>}
+</script>
+
+<script src="/js/clusterMap.js"></script>
