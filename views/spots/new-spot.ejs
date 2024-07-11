@@ -29,7 +29,9 @@
 		</div>
 		<div class="form__group">
 			<label for="image" class="form__file-group">
-				<div class="form__label">Add Images</div>
+				<div class="form__label">
+					Add Images <small>(Aspect ratio 16:9 recommended)</small>
+				</div>
 				<div tabindex="0" class="form__file-visible-input">
 					<span>
 						<img
@@ -37,7 +39,9 @@
 							src="/assets/icons/file-upload.svg"
 							alt="upload icon" />
 					</span>
-					<span class="form__file-text">Upload File(s)</span>
+					<span class="form__file-text"
+						>Upload File(s) - jpeg, jpg, png</span
+					>
 				</div>
 			</label>
 			<input
@@ -46,13 +50,16 @@
 				class="form__file-input"
 				id="image"
 				name="image"
+				accept=".jpeg, .jpg, .png"
 				data-multiple-caption="{count} file(s) selected"
 				multiple />
 		</div>
 		<div class="form__group">
-			<label for="description" class="form__label">Description</label>
+			<label for="description" class="form__label"
+				>Description <small>(Max. 500 characters)</small></label
+			>
 			<textarea
-				placeholder="Enter Spot Description (Max 500 Characters)"
+				placeholder="Enter Spot Description"
 				type="text"
 				class="form__input form__input--textarea"
 				id="description"
