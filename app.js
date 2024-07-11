@@ -168,7 +168,7 @@ app.use((err, req, res, next) => {
 	const { statusCode = 500 } = err;
 	err.statusCode = statusCode;
 	if (!err.message) err.message = "There was some unknown error.";
-	res.status(statusCode).render("error", { err });
+	res.status(statusCode).render("error", { err, title: "Error" });
 });
 
 const port = process.env.PORT || 3000;

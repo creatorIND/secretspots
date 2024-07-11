@@ -8,11 +8,11 @@ const Spot = require("../models/spot");
 
 module.exports.showAllSpots = async (req, res) => {
 	const spots = await Spot.find({});
-	res.render("spots/all-spots", { spots });
+	res.render("spots/all-spots", { spots, title: "All Spots" });
 };
 
 module.exports.renderNewForm = (req, res) => {
-	res.render("spots/new-spot");
+	res.render("spots/new-spot", { title: "Create New Spot" });
 };
 
 module.exports.createSpot = async (req, res, next) => {
@@ -47,8 +47,7 @@ module.exports.showSpot = async (req, res) => {
 		req.flash("error", "Cannot find that spot.");
 		return res.redirect("/spots");
 	}
-	console.log(spot);
-	res.render("spots/view-spot", { spot });
+	res.render("spots/view-spot", { spot, title: spot.name });
 };
 
 module.exports.renderEditForm = async (req, res) => {
@@ -58,8 +57,7 @@ module.exports.renderEditForm = async (req, res) => {
 		req.flash("error", "Cannot find that spot.");
 		return res.redirect("/spots");
 	}
-	console.log(spot);
-	res.render("spots/edit-spot", { spot });
+	res.render("spots/edit-spot", { spot, title: "Edit Spot" });
 };
 
 module.exports.updateSpot = async (req, res) => {
