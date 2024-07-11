@@ -1,4 +1,3 @@
-@import "abstracts/functions";
 @import "abstracts/mixins";
 @import "abstracts/variables";
 
@@ -8,14 +7,11 @@
 @import "base/utilities";
 
 @import "components/button";
-@import "components/card";
-@import "components/composition";
 @import "components/flash";
 @import "components/form";
 @import "components/popup";
 
 @import "layout/footer";
-@import "layout/header";
 @import "layout/grid";
 @import "layout/navigation";
 

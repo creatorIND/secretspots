@@ -5,7 +5,7 @@
 	top: 0;
 	left: 0;
 	background-color: rgba($color-black, 0.8);
-	z-index: 2500;
+	z-index: 5000;
 	opacity: 0;
 	visibility: hidden;
 	transition: all 0.3s ease-in;
@@ -68,7 +68,6 @@
 				position: fixed;
 				top: 2rem;
 				right: 2rem;
-				z-index: 300;
 			}
 		}
 

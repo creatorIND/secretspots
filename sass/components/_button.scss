@@ -6,6 +6,7 @@
 	background-color: $color-blue;
 	padding: 1.5rem 2.5rem;
 	height: 5rem;
+	width: auto;
 	font-size: inherit;
 	font-weight: 400;
 	border-radius: 2rem;
@@ -70,9 +71,4 @@
 			background-color: darken($color-primary, 5%);
 		}
 	}
-
-	// &:hover,
-	// &:active {
-	// 	text-decoration: none;
-	// }
 }

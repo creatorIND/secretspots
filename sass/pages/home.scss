@@ -86,14 +86,12 @@
 			padding: 1.5rem 2.5rem;
 			color: $color-ulgrey;
 			transition: color 0.2s;
-
-			@include respond(phone) {
-				padding: 0.5rem 1.5rem;
-			}
+			font-size: 1.7rem;
 		}
 
 		&:hover,
-		&:active {
+		&:active,
+		&.active {
 			color: $color-white;
 			background: rgba(255, 255, 255, 0.1);
 		}

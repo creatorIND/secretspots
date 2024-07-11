@@ -14,11 +14,6 @@
 
 		&:last-of-type {
 			align-items: center;
-
-			& > * {
-				width: inherit;
-				margin-top: 1rem;
-			}
 		}
 	}
 
@@ -69,8 +64,7 @@
 		gap: 1rem;
 
 		&:focus {
-			outline: 2px solid lighten($color-secondary-light, 10%);
-			outline-offset: 1px;
+			outline: 2px solid $color-secondary-light;
 		}
 
 		& span:first-of-type {
@@ -95,16 +89,6 @@
 		position: absolute;
 		z-index: -1;
 	}
-
-	// &__file-label {
-	// 	height: 5rem;
-	// 	width: 100%;
-	// 	background-color: $color-ulgrey;
-	// 	color: $color-black;
-	// 	border-radius: 2rem;
-	// 	border: 2px solid $color-ulgrey;
-	// 	padding: 1rem 2rem;
-	// }
 
 	&__radio-group {
 		width: 100%;
@@ -147,12 +131,12 @@
 			display: block;
 			height: 2rem;
 			width: 2rem;
-			border: 1px solid $color-secondary-dark;
+			border: 1px solid $color-primary;
 			position: absolute;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			background-color: $color-secondary-dark;
+			background-color: $color-primary;
 			opacity: 0;
 			transition: opacity 0.1s;
 		}
@@ -170,8 +154,8 @@
 		&::after {
 			content: "";
 			position: absolute;
-			top: 2px;
-			left: 6px;
+			top: 0.1rem;
+			left: 0.5rem;
 			width: 0.6rem;
 			height: 1.2rem;
 			border: solid $color-white;
@@ -194,6 +178,6 @@
 	&__radio-input:checked ~ &__radio-label &__radio-button::after,
 	&__radio-input:checked ~ &__radio-label {
 		opacity: 1;
-		color: $color-secondary-dark;
+		color: $color-primary;
 	}
 }

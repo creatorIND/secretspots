@@ -38,6 +38,22 @@
 	}
 }
 
+.u-margin-top-tiny {
+	margin-top: 1rem !important;
+
+	@include respond(tab-port) {
+		margin-top: 0.5rem !important;
+	}
+}
+
+.u-margin-top-small {
+	margin-top: 2rem !important;
+
+	@include respond(tab-port) {
+		margin-top: 1.5rem !important;
+	}
+}
+
 .u-margin-top-medium {
 	margin-top: 4rem !important;
 
@@ -52,6 +68,14 @@
 
 .u-margin-top-huge {
 	margin-top: 10rem !important;
+}
+
+.u-margin-left-tiny {
+	margin-left: 1rem !important;
+
+	@include respond(tab-port) {
+		margin-left: 0.5rem !important;
+	}
 }
 
 .u-text-w500 {
@@ -99,10 +123,6 @@
 
 .u-hover-white:hover {
 	color: $color-white !important;
-}
-
-.u-no-outline {
-	outline: none !important;
 }
 
 .u-left-margin-2rem {

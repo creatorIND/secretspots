@@ -11,10 +11,6 @@
 		flex-direction: column;
 		gap: 2rem;
 
-		// @include respond(tab-land) {
-		//     padding: 2rem ;
-		// }
-
 		@include respond(tab-land) {
 			padding: 2rem 8rem;
 		}
