@@ -1,6 +1,7 @@
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapboxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapboxToken });
+const googleMapsBaseUrl = process.env.GOOGLE_MAPS_BASE_URL;
 
 const { cloudinary } = require("../cloudinary");
 
@@ -54,7 +55,13 @@ module.exports.showSpot = async (req, res) => {
 		req.flash("error", "Cannot find that spot.");
 		return res.redirect("/spots");
 	}
-	res.render("spots/view-spot", { spot, title: spot.name });
+	const latitude = spot.geometry.coordinates[1];
+	const longitude = spot.geometry.coordinates[0];
+	const googleMapsUrl = encodeURI(
+		`${googleMapsBaseUrl}&query=${latitude},${longitude}`
+	);
+	console.log(googleMapsUrl);
+	res.render("spots/view-spot", { spot, googleMapsUrl, title: spot.name });
 };
 
 module.exports.renderEditForm = async (req, res) => {
