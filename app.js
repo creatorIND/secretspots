@@ -69,6 +69,7 @@ store.on("error", function (e) {
 	console.log("SESSION STORE ERROR", e);
 });
 
+app.set("trust proxy", 1);
 app.use(
 	session({
 		store,
