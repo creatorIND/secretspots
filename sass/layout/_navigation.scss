@@ -80,7 +80,7 @@
 			height: 90vh;
 			position: fixed;
 			top: 0;
-			left: 0;
+			left: -10rem;
 			z-index: 1950;
 			opacity: 0;
 			width: 0;
@@ -190,6 +190,7 @@
 	&__checkbox:checked ~ &__nav {
 		opacity: 1;
 		width: 100%;
+		left: 0;
 	}
 
 	//Icon

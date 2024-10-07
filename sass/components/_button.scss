@@ -1,5 +1,8 @@
 .btn {
 	display: inline-block;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 	text-decoration: none;
 	border: none;
 	color: $color-white;
@@ -17,6 +20,11 @@
 	&:active {
 		background-color: darken($color-blue, 5%);
 		text-decoration: none;
+	}
+
+	&__icon,
+	&__icon svg {
+		vertical-align: middle;
 	}
 
 	&--home {
