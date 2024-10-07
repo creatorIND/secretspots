@@ -1,18 +1,40 @@
 <% if(success && success.length) { %>
 <div class="flash flash--success" role="alert">
-	<img
-		class="flash__icon"
-		src="/assets/icons/flash-success.svg"
-		alt="green success icon" />
+	<div class="flash__icon">
+		<svg
+			width="40"
+			height="40"
+			viewBox="0 0 40 40"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg">
+			<path
+				fill-rule="evenodd"
+				clip-rule="evenodd"
+				d="M19.9999 3.33337C10.7999 3.33337 3.33325 10.8 3.33325 20C3.33325 29.2 10.7999 36.6667 19.9999 36.6667C29.1999 36.6667 36.6666 29.2 36.6666 20C36.6666 10.8 29.1999 3.33337 19.9999 3.33337ZM20 33.3335C12.65 33.3335 6.66667 27.3501 6.66667 20.0001C6.66667 12.6501 12.65 6.66679 20 6.66679C27.35 6.66679 33.3333 12.6501 33.3333 20.0001C33.3333 27.3501 27.35 33.3335 20 33.3335ZM16.6666 23.6169L26.4666 13.8169C27.1166 13.1669 28.1833 13.1669 28.8333 13.8169C29.4833 14.4669 29.4833 15.5169 28.8333 16.1669L17.85 27.1502C17.2 27.8002 16.15 27.8002 15.5 27.1502L11.1833 22.8336C10.5333 22.1836 10.5333 21.1336 11.1833 20.4836C11.4947 20.1715 11.9174 19.9961 12.3583 19.9961C12.7992 19.9961 13.2219 20.1715 13.5333 20.4836L16.6666 23.6169Z"
+				fill="#198754"
+				fill-opacity="0.8" />
+		</svg>
+	</div>
 	<div class="flash__message"><%= success %></div>
 	<div class="flash__close">&times;</div>
 </div>
 <% } %> <% if(error && error.length) { %>
 <div class="flash flash--error" role="alert">
-	<img
-		class="flash__icon"
-		src="/assets/icons/flash-error.svg"
-		alt="red warning icon" />
+	<div class="flash__icon">
+		<svg
+			width="40"
+			height="40"
+			viewBox="0 0 40 40"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg">
+			<path
+				fill-rule="evenodd"
+				clip-rule="evenodd"
+				d="M7.45012 34.1731C4.88345 34.1731 3.28345 31.3898 4.56679 29.1731L17.1168 7.48977C18.4001 5.2731 21.6001 5.2731 22.8835 7.48977L35.4335 29.1731C36.7168 31.3898 35.1168 34.1731 32.5501 34.1731H7.45012ZM32.5504 30.8399L20.0004 9.15662L7.45036 30.8399H32.5504ZM18.3333 17.5066V20.84C18.3333 21.7566 19.0833 22.5066 20 22.5066C20.9167 22.5066 21.6667 21.7566 21.6667 20.84V17.5066C21.6667 16.59 20.9167 15.84 20 15.84C19.0833 15.84 18.3333 16.59 18.3333 17.5066ZM21.6667 29.1733V25.84H18.3333V29.1733H21.6667Z"
+				fill="#DC3545"
+				fill-opacity="0.8" />
+		</svg>
+	</div>
 	<div class="flash__message"><%= error %></div>
 	<div class="flash__close">&times;</div>
 </div>
