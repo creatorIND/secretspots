@@ -304,6 +304,9 @@ select {
 
 .btn {
   display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   text-decoration: none;
   border: none;
   color: #ffffff;
@@ -320,6 +323,9 @@ select {
 .btn:hover, .btn:active {
   background-color: #0262ef;
   text-decoration: none;
+}
+.btn__icon, .btn__icon svg {
+  vertical-align: middle;
 }
 .btn--home {
   color: #dae3ea;
@@ -825,7 +831,7 @@ select {
     height: 90vh;
     position: fixed;
     top: 0;
-    left: 0;
+    left: -10rem;
     z-index: 1950;
     opacity: 0;
     width: 0;
@@ -920,6 +926,7 @@ select {
 .navigation__checkbox:checked ~ .navigation__nav {
   opacity: 1;
   width: 100%;
+  left: 0;
 }
 .navigation__icon {
   position: relative;
@@ -968,7 +975,7 @@ select {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("/assets/img/home-bg.jpg") lightgray 50%/cover no-repeat;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("/assets/img/home-bg.webp") lightgray 50%/cover no-repeat;
 }
 .home__main {
   max-width: 80rem;
@@ -1604,11 +1611,16 @@ select {
 
 .error {
   width: 100%;
-  padding: 4rem 10rem;
+  padding: 8rem 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #dc3545;
+}
+@media only screen and (max-width: 37.5em) {
+  .error {
+    padding: 6rem;
+  }
 }
 .error__header {
   display: flex;
@@ -1629,6 +1641,9 @@ select {
   .error__icon {
     flex-basis: 100%;
   }
+}
+.error__icon svg {
+  height: 100%;
 }
 .error__header-text {
   font-size: 10rem;
