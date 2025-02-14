@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const cities = require("./cities");
-const { places, descriptors } = require("./seedHelpers");
-const Spot = require("../models/spot");
 // const dBUrl = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
 const dBUrl = "mongodb://localhost:27017/secretspots";
+const { faker } = require("@faker-js/faker");
+
+const Spot = require("../models/spot");
 
 mongoose.connect(dBUrl);
 const db = mongoose.connection;
@@ -12,42 +12,49 @@ db.once("open", () => {
 	console.log("***DATABASE CONNECTED***");
 });
 
-const sample = (array) => array[Math.floor(Math.random() * array.length)];
-
 const seedDB = async () => {
 	await Spot.deleteMany({});
-	for (let i = 0; i < 300; i++) {
-		const random1000 = Math.floor(Math.random() * 1000);
-		// const price = Math.floor(Math.random() * 20) + 10;
+
+	for (let i = 0; i < 100; i++) {
 		const spot = new Spot({
-			author: "6683a7812a446e9af6b9b282",
-			location: `${cities[random1000].city}, ${cities[random1000].state}`,
-			title: `${sample(descriptors)} ${sample(places)}`,
-			description:
-				"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias nam, magnam exercitationem sequi repellendus eveniet delectus perspiciatis atque deserunt quia voluptatum totam quaerat corrupti suscipit veniam minima! Autem, odit ducimus?",
-			// price,
+			author: "67ab62b3fa1ef31fece89213",
+			location: faker.location.streetAddress({ useFullAddress: true }),
+			name: `${faker.lorem.word()} ${faker.music.genre()}`,
+			description: `${faker.lorem.sentences(6)}`.slice(0, 500),
 			geometry: {
 				type: "Point",
 				coordinates: [
-					cities[random1000].longitude,
-					cities[random1000].latitude,
+					faker.location.longitude(),
+					faker.location.latitude(),
 				],
 			},
-			images: [
-				{
-					url: "https://res.cloudinary.com/fedupnow/image/upload/v1717758688/YelpCamp/vjbtkidqivlnhec7pnou.jpg",
-					filename: "YelpCamp/vjbtkidqivlnhec7pnou",
-				},
-				{
-					url: "https://res.cloudinary.com/fedupnow/image/upload/v1717758687/YelpCamp/f5qdpmisslmai8okshmc.jpg",
-					filename: "YelpCamp/f5qdpmisslmai8okshmc",
-				},
-			],
+			// images: [
+			// 	{
+			// 		url: faker.image.urlLoremFlickr({
+			// 			width: 1920,
+			// 			height: 1080,
+			// 			category: "nature",
+			// 		}),
+			// 		filename: "SecretSpots/vjbtkidqivlnhec7pnou",
+			// 	},
+			// 	{
+			// 		url: faker.image.urlLoremFlickr({
+			// 			width: 1920,
+			// 			height: 1080,
+			// 			category: "travel",
+			// 		}),
+			// 		filename: "SecretSpots/f5qdpmisslmai8okshmc",
+			// 	},
+			// ],
 		});
 		await spot.save();
 	}
 };
 
-seedDB().then(() => {
-	mongoose.connection.close();
-});
+seedDB()
+	.then(() => {
+		mongoose.connection.close();
+	})
+	.catch((err) => {
+		console.log(err.message);
+	});
