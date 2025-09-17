@@ -81,6 +81,11 @@
 
 		&__group {
 			flex-basis: 100%;
+
+			&:last-of-type {
+				flex-direction: column;
+				align-items: center;
+			}
 		}
 	}
 
