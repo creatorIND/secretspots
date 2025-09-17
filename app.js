@@ -22,7 +22,7 @@ const spotRoutes = require("./routes/spots");
 const reviewRoutes = require("./routes/reviews");
 
 const ExpressError = require("./utils/ExpressError");
-const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/secretspots";
+const dbUrl = process.env.DB_URL;
 
 mongoose.connect(dbUrl, {
 	dbName: "secretspots",
