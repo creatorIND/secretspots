@@ -103,7 +103,7 @@
 			<% } else if(spot.images.length === 1) { %>
 			<img
 				class="spot__image"
-				src="<%= spot.images[0].url %>"
+				src="<%= spot.images[0].slide %>"
 				alt="Image of <%= spot.name %>"
 				crossorigin="anonymous" />
 			<% } else { %>
@@ -117,7 +117,7 @@
 						<li class="splide__slide" data-splide-interval="3000">
 							<img
 								class="spot__image"
-								src="<%= image.url %>"
+								src="<%= image.slide %>"
 								alt="Image <%= i + 1 %> of <%= spot.name %>"
 								crossorigin="anonymous" />
 						</li>
