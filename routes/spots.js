@@ -1,14 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
-const { storage } = require("../cloudinary");
-const upload = multer({ storage });
 
 const {
 	isLoggedIn,
 	isAuthor,
 	validateSpot,
 	validateObjectId,
+	handleImageUpload,
 } = require("../middleware");
 
 const spots = require("../controllers/spots");
@@ -19,7 +17,7 @@ router
 	.get(catchAsync(spots.showAllSpots))
 	.post(
 		isLoggedIn,
-		upload.array("image"),
+		handleImageUpload,
 		validateSpot,
 		catchAsync(spots.createSpot)
 	);
@@ -32,7 +30,7 @@ router
 	.put(
 		isLoggedIn,
 		isAuthor,
-		upload.array("image"),
+		handleImageUpload,
 		validateSpot,
 		catchAsync(spots.updateSpot)
 	)

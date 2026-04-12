@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Spot = require("./models/spot");
 const Review = require("./models/review");
 
+const { upload } = require("./cloudinary");
 const ExpressError = require("./utils/ExpressError");
 const { spotSchema, reviewSchema } = require("./schemas");
 
@@ -75,4 +76,34 @@ module.exports.validateReview = (req, res, next) => {
 	} else {
 		next();
 	}
+};
+
+module.exports.handleImageUpload = (req, res, next) => {
+	const uploadProcess = upload.array("image");
+
+	uploadProcess(req, res, (err) => {
+		if (err) {
+			let errorMessage = err.message;
+
+			if (err.code === "LIMIT_FILE_SIZE")
+				errorMessage =
+					"Please ensure each image size does not exceed 5MB.";
+			if (err.code === "LIMIT_FILE_COUNT")
+				errorMessage =
+					"You can only upload a maximum of 5 images at a time.";
+
+			req.flash("error", errorMessage);
+
+			let redirectPath = "/spots/new";
+			if (req.method === "PUT" && req.params.id) {
+				redirectPath = `/spots/${req.params.id}/edit`;
+			}
+
+			return req.session.save(() => {
+				res.redirect(redirectPath);
+			});
+		}
+
+		next();
+	});
 };
