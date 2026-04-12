@@ -49,6 +49,6 @@ module.exports.logout = (req, res, next) => {
 			return next(err);
 		}
 		req.flash("success", "You have been successfully logged out!");
-		res.redirect("/login");
+		res.redirect("/spots");
 	});
 };
