@@ -37,7 +37,7 @@ module.exports.renderLogin = (req, res) => {
 };
 
 module.exports.login = async (req, res) => {
-	const redirectUrl = req.session.returnTo || "/spots";
+	const redirectUrl = res.locals.returnTo || "/spots";
 	delete req.session.returnTo;
 
 	req.flash("success", "Oh hey, welcome back!");
