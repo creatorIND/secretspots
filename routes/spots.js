@@ -1,5 +1,4 @@
 const express = require("express");
-const router = express.Router();
 
 const {
 	isLoggedIn,
@@ -8,9 +7,10 @@ const {
 	validateObjectId,
 	handleImageUpload,
 } = require("../middleware");
-
 const spots = require("../controllers/spots");
 const catchAsync = require("../utils/catchAsync");
+
+const router = express.Router();
 
 router
 	.route("/")

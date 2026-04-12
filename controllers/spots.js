@@ -1,7 +1,6 @@
+const Spot = require("../models/spot");
 
 const { cloudinary } = require("../cloudinary");
-
-const Spot = require("../models/spot");
 const { geocodeLocation } = require("../utils/geocoding");
 
 module.exports.showAllSpots = async (req, res) => {
@@ -44,25 +43,30 @@ module.exports.showSpot = async (req, res) => {
 			},
 		})
 		.populate("author");
+
 	if (!spot) {
 		req.flash("error", "Cannot find that spot.");
 		return res.redirect("/spots");
 	}
+
 	const latitude = spot.geometry.coordinates[1];
 	const longitude = spot.geometry.coordinates[0];
 	const googleMapsUrl = encodeURI(
 		`${process.env.GOOGLE_MAPS_BASE_URL}&query=${latitude},${longitude}`
 	);
+
 	res.render("spots/view-spot", { spot, googleMapsUrl, title: spot.name });
 };
 
 module.exports.renderEditForm = async (req, res) => {
 	const { id } = req.params;
 	const spot = await Spot.findById(id);
+
 	if (!spot) {
 		req.flash("error", "Cannot find that spot.");
 		return res.redirect("/spots");
 	}
+
 	res.render("spots/edit-spot", { spot, title: "Edit Spot" });
 };
 
@@ -113,7 +117,9 @@ module.exports.updateSpot = async (req, res) => {
 
 module.exports.deleteSpot = async (req, res) => {
 	const { id } = req.params;
+
 	await Spot.findByIdAndDelete(id);
+
 	req.flash("success", "Spot successfully deleted.");
 	res.redirect("/spots");
 };

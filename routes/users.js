@@ -1,10 +1,12 @@
 const express = require("express");
-const router = express.Router();
-const catchAsync = require("../utils/catchAsync");
-const users = require("../controllers/users");
 const passport = require("passport");
 
+const users = require("../controllers/users");
 const { storeReturnTo, isNotLoggedIn } = require("../middleware");
+const catchAsync = require("../utils/catchAsync");
+
+const router = express.Router();
+
 router
 	.route("/register")
 	.get(isNotLoggedIn, users.renderRegister)

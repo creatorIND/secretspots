@@ -111,7 +111,7 @@ app.use(
 				"'self'",
 				"blob:",
 				"data:",
-				"https://res.cloudinary.com/sujalsinha/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
+				"https://res.cloudinary.com/sujalsinha/",
 			],
 			fontSrc: ["'self'", "https://fonts.gstatic.com"],
 		},
