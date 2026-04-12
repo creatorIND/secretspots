@@ -53,7 +53,10 @@ app.use(
 	})
 );
 
-const secret = process.env.SECRET || "thisshouldbeabettersecret!";
+if (!process.env.SECRET) {
+	throw new Error("SECRET environment variable is required");
+}
+const secret = process.env.SECRET;
 
 const store = MongoStore.create({
 	mongoUrl: dbUrl,

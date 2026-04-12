@@ -25,10 +25,10 @@ module.exports.register = async (req, res, next) => {
 				"error",
 				"A user with the given email is already registered"
 			);
-		} else {
-			req.flash("error", e.message);
+			return res.redirect("/register");
 		}
-		res.redirect("/register");
+		// Re-throw other errors to be handled by catchAsync
+		throw e;
 	}
 };
 
