@@ -1,11 +1,8 @@
-const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
-const mapboxToken = process.env.MAPBOX_TOKEN;
-const geocoder = mbxGeocoding({ accessToken: mapboxToken });
-const googleMapsBaseUrl = process.env.GOOGLE_MAPS_BASE_URL;
 
 const { cloudinary } = require("../cloudinary");
 
 const Spot = require("../models/spot");
+const { geocodeLocation } = require("../utils/geocoding");
 
 module.exports.showAllSpots = async (req, res) => {
 	const spots = await Spot.find({});
@@ -17,29 +14,25 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createSpot = async (req, res, next) => {
-	const geoData = await geocoder
-		.forwardGeocode({
-			query: req.body.spot.location,
-			limit: 1,
-		})
-		.send();
-	if (!geoData.body.features || geoData.body.features.length === 0) {
-		req.flash(
-			"error",
-			"Location not found. Please enter a valid location."
-		);
+	try {
+		const spot = new Spot(req.body.spot);
+		const geometry = await geocodeLocation(req.body.spot.location);
+
+		spot.geometry = geometry;
+		spot.images = req.files.map((f) => ({
+			url: f.path,
+			filename: f.filename,
+		}));
+		spot.author = req.user._id;
+
+		await spot.save();
+
+		req.flash("success", "Successfully created a new spot.");
+		res.redirect(`/spots/${spot._id}`);
+	} catch (error) {
+		req.flash("error", error.message);
 		return res.redirect("/spots/new");
 	}
-	const spot = new Spot(req.body.spot);
-	spot.geometry = geoData.body.features[0].geometry;
-	spot.images = req.files.map((f) => ({
-		url: f.path,
-		filename: f.filename,
-	}));
-	spot.author = req.user._id;
-	await spot.save();
-	req.flash("success", "Successfully created a new spot.");
-	res.redirect(`/spots/${spot._id}`);
 };
 
 module.exports.showSpot = async (req, res) => {
@@ -58,7 +51,7 @@ module.exports.showSpot = async (req, res) => {
 	const latitude = spot.geometry.coordinates[1];
 	const longitude = spot.geometry.coordinates[0];
 	const googleMapsUrl = encodeURI(
-		`${googleMapsBaseUrl}&query=${latitude},${longitude}`
+		`${process.env.GOOGLE_MAPS_BASE_URL}&query=${latitude},${longitude}`
 	);
 	res.render("spots/view-spot", { spot, googleMapsUrl, title: spot.name });
 };
@@ -81,21 +74,14 @@ module.exports.updateSpot = async (req, res) => {
 		req.body.spot.location &&
 		req.body.spot.location !== currentSpot.location
 	) {
-		const geoData = await geocoder
-			.forwardGeocode({
-				query: req.body.spot.location,
-				limit: 1,
-			})
-			.send();
-
-		if (!geoData.body.features || geoData.body.features.length === 0) {
-			req.flash(
-				"error",
-				"Location not found. Please enter a valid location."
+		try {
+			req.body.spot.geometry = await geocodeLocation(
+				req.body.spot.location
 			);
+		} catch (error) {
+			req.flash("error", error.message);
 			return res.redirect(`/spots/${id}/edit`);
 		}
-		req.body.spot.geometry = geoData.body.features[0].geometry;
 	} else {
 		req.body.spot.geometry = currentSpot.geometry;
 	}
