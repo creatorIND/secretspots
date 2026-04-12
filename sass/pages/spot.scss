@@ -238,11 +238,12 @@
 	&__location {
 		font-size: 2rem;
 		letter-spacing: 0.25rem;
+		text-transform: uppercase;
+		font-weight: 300;
+		color: $color-grey;
 	}
 
 	&__description {
-		font-weight: 300;
 		line-height: 4rem;
-		letter-spacing: 0.1rem;
 	}
 }
