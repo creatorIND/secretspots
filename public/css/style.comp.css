@@ -102,7 +102,7 @@ body {
 }
 
 ::selection {
-  background-color: #3f8e2f;
+  background-color: rgb(63, 141.5342465753, 47.4657534247);
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
 }
@@ -131,6 +131,7 @@ a {
 }
 
 input,
+button,
 textarea,
 select {
   font-family: inherit;
@@ -325,7 +326,7 @@ select {
   cursor: pointer;
 }
 .btn:hover, .btn:active {
-  background-color: #0262ef;
+  background-color: rgb(1.9713114754, 97.5799180328, 238.5286885246);
   text-decoration: none;
 }
 .btn__icon, .btn__icon svg {
@@ -346,28 +347,28 @@ select {
   background-color: #ffffff;
 }
 .btn--white:hover, .btn--white:active {
-  background-color: #f2f2f2;
+  background-color: rgb(242.25, 242.25, 242.25);
 }
 .btn--red {
   color: #ffffff;
   background-color: #dc3545;
 }
 .btn--red:hover, .btn--red:active {
-  background-color: #d32535;
+  background-color: rgb(210.9493670886, 36.5506329114, 53.2594936709);
 }
 .btn--blue-light {
   color: #ffffff;
   background-color: #0dcaf0;
 }
 .btn--blue-light:hover, .btn--blue-light:active {
-  background-color: #0cb6d8;
+  background-color: rgb(11.6897233202, 181.6403162055, 215.8102766798);
 }
 .btn--primary {
   color: #ffffff;
   background-color: #6dc85b;
 }
 .btn--primary:hover, .btn--primary:active {
-  background-color: #5cc248;
+  background-color: rgb(92, 193.595890411, 71.904109589);
 }
 
 .flash {
@@ -1549,11 +1550,12 @@ select {
 .spot__location {
   font-size: 2rem;
   letter-spacing: 0.25rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: #6d7d8b;
 }
 .spot__description {
-  font-weight: 300;
   line-height: 4rem;
-  letter-spacing: 0.1rem;
 }
 
 .new-spot,
