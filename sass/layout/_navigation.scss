@@ -132,30 +132,29 @@
 	}
 
 	&__link {
-		&:link,
-		&:visited {
-			font-size: inherit;
-			color: $color-primary-light;
-			transition: border-bottom 0.2s ease-in-out;
-			padding-bottom: 1rem;
+		font-size: inherit;
+		color: $color-primary-light;
+		transition: border-bottom 0.2s ease-in-out;
+		padding-bottom: 1rem;
+		border: none;
+		background: none;
 
-			@include respond(tab-port) {
-				display: inline-block;
-				font-size: 2.5rem;
-				font-weight: 600;
-				letter-spacing: 0.18rem;
-				color: $color-white;
-				text-transform: capitalize;
-				padding: 1.5rem 2.5rem;
-				background-image: linear-gradient(
-					90deg,
-					transparent 0%,
-					transparent 50%,
-					$color-primary-light 50%
-				);
-				background-size: 240%;
-				transition: all 0.4s;
-			}
+		@include respond(tab-port) {
+			display: inline-block;
+			font-size: 2.5rem;
+			font-weight: 600;
+			letter-spacing: 0.18rem;
+			color: $color-white;
+			text-transform: capitalize;
+			padding: 1.5rem 2.5rem;
+			background-image: linear-gradient(
+				90deg,
+				transparent 0%,
+				transparent 50%,
+				$color-primary-light 50%
+			);
+			background-size: 240%;
+			transition: all 0.4s;
 		}
 
 		&:hover,
